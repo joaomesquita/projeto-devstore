@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800,900');
+@import url('https://use.fontawesome.com/releases/v5.2.0/css/all.css');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Navbar */
+
+.navbar-content a {
+    color: #373a3c;
+}
+
+.navbar-content a:hover {
+    color: #818181;
+}
+
+.navbar-content ul li a:hover {
+    background-color: #ffffff;
+}
+
+.navbar-content {
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+    transition: padding 0.3s ease;
+}
+
+.navbar-logo a {
+    display: table;
+    width: 180px;
+    height: 60px;
+    background-size: 100%;
+    background: no-repeat url("../img/logo.svg");
+}
+
+.navbar {
+    background-color: #ffffff;
+}
+
+.affix {
+    padding-top: 1em !important;
+    padding-bottom: 0.5em !important;      
+    transition:padding 0.3s linear;  
+}
+
+/* Slide */
+
+.carousel-item {
+padding-top: 24vh;
+}
+
+/* Main */
+
+.main-content h3 {
+    font-weight: 700;
+}
+
+.main-content {
+    padding-top: 15vh;
+    padding-bottom: 15vh;
+}
+
+/* Card */
+
+.card-content h2 {
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.card-content p {
+    font-size: 1.5em;
+    font-weight: 600; 
+    text-transform: uppercase;
+}
+
+.card-link {
+    color: #373a3c;
+}
+
+/* Footer */
+
+.footer-page h5 {
+    font-weight: 700;
+}
+
+.footer-page {
+    background-color: #ffffff;
+    border-top: 1px solid #cececeab;
+}
+
+.footer-item li {
+    padding-top: 2vh;
+}
+
+.footer-item a, 
+.footer-item p,
+.footer-icon a {
+    color: #373a3c;
+}
+
+.footer-item a:hover,
+.footer-icon a:hover {
+    color: #818181;
+    text-decoration: none;
+    transition: 0.5s;
+}
+
+.footer-content {
+    padding-top: 10vh;
+    padding-bottom: 20vh;
+    
+}
