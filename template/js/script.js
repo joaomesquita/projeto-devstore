@@ -1,7 +1,18 @@
+// Scroll fixed
 $(window).scroll(function() {
-    if ($(document).scrollTop() > 100) {
-        $('.navbar-content').addClass('affix');
+    if ($(document).scrollTop() > 50) {
+        $('.menu').addClass('affix');
     } else {
-        $('.navbar-content').removeClass('affix');
+        $('.menu').removeClass('affix');
     }
 });
+
+// Dropdown hover
+$(".dropdown").hover(
+    function() {
+        $('.dropdown-menu', this).fadeIn(100);
+    },
+    function() {
+        $('.dropdown-menu', this).fadeOut(100);
+    }
+);
