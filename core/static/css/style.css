@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800,900');
+@import url('https://use.fontawesome.com/releases/v5.2.0/css/all.css');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+main {
+    margin-top: 24vh;
+}
+
+.content {
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+}
+
+/* Navbar */
+
+.navbar {
+    background-color: #ffffff;
+}
+
+.menu {
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+    transition: padding 0.3s ease;
+}
+
+.menu-item {
+    font-weight: 600;
+    font-size: 0.9em;
+    color: #818181;
+}
+
+.menu-item:hover {
+    color: #373a3c;
+}
+
+.dropdown-menu a {
+    font-size: 0.9em;
+    padding-top: 1vh;
+    padding-bottom: 2vh;
+    padding-left: 2vw;
+    padding-right: 10vw;
+    color: #818181;
+}
+
+.dropdown-menu a:hover {
+    color: #373a3c;
+    background-color: #ffffff;
+}
+
+.logo a {
+    display: table;
+    width: 180px;
+    height: 60px;
+    background-size: 100%;
+    background: no-repeat url("../img/logo.svg");
+}
+
+.box-shadow {
+    padding: 10vw;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.affix {
+    padding-top: 1em !important;
+    padding-bottom: 0.5em !important;      
+    transition:padding 0.3s linear;  
+}
+
+/* Main */
+
+.title-content {
+    font-size: 4em;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #373a3c;
+}
+
+.distance-content {
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+}
+
+.page-item a {
+    color: #373a3c;
+}
+
+.page-item a:hover {
+    color: #818181;
+}
+
+.page-item.active a.page-link{
+    background-color: #373a3c;
+    border-color: #373a3c;
+}
+
+/* Product */
+
+.title-product {
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.price-product {
+    font-weight: 600;
+    font-size: 1.8em;
+}
+
+.description-product {
+    text-align: justify;
+}
+
+.btn-buy {
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+.title-product,
+.price-product,
+.description-product,
+.input-product {
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+}
+
+/* Card */
+
+.title-card {
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #373a3c;
+}
+
+.price-card {
+    font-size: 1.5em;
+    font-weight: 600; 
+    text-transform: uppercase;
+    color: #373a3c;
+}
+
+/* Breadcrumb */
+
+ol.breadcrumb {
+    background: none;
+    padding: 0%;
+}
+
+.breadcrumb-item a {
+    font-weight: bold;
+    color: #818181;
+}
+
+.breadcrumb-item a:hover {
+    color: #373a3c;
+    text-decoration: none;
+}
+
+/* Footer */
+
+.footer {
+    background-color: #ffffff;
+    border-top: 1px solid #cececeab;
+    padding-top: 10vh;
+    padding-bottom: 20vh;
+}
+
+.title-footer {
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #373a3c;
+}
+
+.info-footer {
+    font-weight: bold;
+    color: #373a3c;
+}
+
+.footer-item li {
+    padding-top: 2vh;
+    list-style-type: none;
+}
+
+.footer-item a, 
+.footer-item p,
+.footer-icon a {
+    color: #818181;
+}
+
+.footer-item a:hover,
+.footer-icon a:hover {
+    color: #373a3c;
+    text-decoration: none;
+}
