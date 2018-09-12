@@ -5,7 +5,7 @@ from django.urls import reverse
 class Category(models.Model):
     name = models.CharField('Nome', max_length=100)
     slug = models.SlugField('Identificador', max_length=100)
-    create = models.DateTimeField('Criado em', auto_now_add=True)
+    created = models.DateTimeField('Criado em', auto_now_add=True)
     modified = models.DateTimeField('Modificado em', auto_now=True)
 
     class Meta:
@@ -15,7 +15,7 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
-    
+
     def get_absolute_url(self):
         return reverse('catalog:category', kwargs={'slug': self.slug})
 
@@ -24,9 +24,8 @@ class Product(models.Model):
     slug = models.SlugField('Identificador', max_length=100)
     category = models.ForeignKey('catalog.Category', verbose_name='Categoria', on_delete=models.CASCADE)
     description = models.TextField('Descrição', blank=True)
-    quantity = models.DecimalField('Quantidade', max_digits=10)
     price = models.DecimalField('Preço', decimal_places=2, max_digits=8)
-    create = models.DateTimeField('Criado em', auto_now_add=True)
+    created = models.DateTimeField('Criado em', auto_now_add=True)
     modified = models.DateTimeField('Modificado em', auto_now=True)
 
     class Meta:
