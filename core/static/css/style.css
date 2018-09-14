@@ -100,9 +100,9 @@ main {
 
 /* Gallery Tab */
 
-.gallery-items {
+.gallery-itens {
     overflow: auto;
-    height: 77.5vh;
+    height: 68.5vh;
 }
 
 .invisible-scrollbar::-webkit-scrollbar {
