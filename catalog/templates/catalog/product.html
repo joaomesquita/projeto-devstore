@@ -5,50 +5,52 @@
 {% block container %}
 <div class="container content">
     <div class="row">
-        <div class="col-sm-2 gallery-items invisible-scrollbar">
-            <ul class="nav nav-tabs">
-                <li class="active">
-                    <a href="#a" data-toggle="tab" aria-expanded="false">
-                        <img class="card-img rounded-0 mb-3" src="http://via.placeholder.com/350x400" alt="Card image">
-                    </a>
-                </li>
-                <li class="">
-                    <a href="#b" data-toggle="tab" aria-expanded="true">
-                        <img class="card-img rounded-0 mb-3" src="http://via.placeholder.com/350x400" alt="Card image">
-                    </a>
-                </li>
-                <li class="">
-                    <a href="#c" data-toggle="tab" aria-expanded="true">
-                        <img class="card-img rounded-0 mb-3" src="http://via.placeholder.com/350x400" alt="Card image">
-                    </a>
-                </li>
-                <li class="">
-                    <a href="#d" data-toggle="tab" aria-expanded="true">
-                        <img class="card-img rounded-0" src="http://via.placeholder.com/350x400" alt="Card image">
-                    </a>
-                </li>
-            </ul>
+        <div class="col-sm-2">
+            <div class="gallery-itens invisible-scrollbar">
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#a" data-toggle="tab" aria-expanded="true">
+                            <img class="card-img rounded-0" src="https://i.imgur.com/vqr59nY.jpg" alt="Card image">
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="#b" data-toggle="tab" aria-expanded="true">
+                            <img class="card-img rounded-0" src="https://i.imgur.com/liucuJK.jpg" alt="Card image">
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="#c" data-toggle="tab" aria-expanded="true">
+                            <img class="card-img rounded-0" src="https://i.imgur.com/EzxeCyI.jpg" alt="Card image">
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="#d" data-toggle="tab" aria-expanded="true">
+                            <img class="card-img rounded-0" src="https://i.imgur.com/6obQd6t.jpg" alt="Card image">
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
         <div class="col-sm-5">
             <div class="tab-content">
                 <div class="tab-pane active" id="a">
                     <div class="profile-image">
-                        <img class="card-img rounded-0" id="card-img" src="http://via.placeholder.com/350x400" alt="Card image">
+                        <img class="card-img rounded-0" src="https://i.imgur.com/vqr59nY.jpg" alt="Card image">
                     </div>
                 </div>
                 <div class="tab-pane" id="b">
                     <div class="profile-image">
-                        <img class="card-img rounded-0" id="card-img" src="http://via.placeholder.com/350x400" alt="Card image">
+                        <img class="card-img rounded-0" src="https://i.imgur.com/liucuJK.jpg" alt="Card image">
                     </div>
                 </div>
                 <div class="tab-pane" id="c">
                     <div class="profile-image">
-                        <img class="card-img rounded-0" id="card-img" src="http://via.placeholder.com/350x400" alt="Card image">
+                        <img class="card-img rounded-0" src="https://i.imgur.com/EzxeCyI.jpg" alt="Card image">
                     </div>
                 </div>
                 <div class="tab-pane" id="d">
                     <div class="profile-image">
-                        <img class="card-img rounded-0" id="card-img" src="http://via.placeholder.com/350x400" alt="Card image">
+                        <img class="card-img rounded-0" src="https://i.imgur.com/6obQd6t.jpg" alt="Card image">
                     </div>
                 </div>
             </div>
@@ -66,7 +68,28 @@
                 <h1 class="title-product">{{ product }}</h1>
                 <p class="price-product">R$ {{ product.price }}</p>
                 <p class="description-product">{{ product.description }}</p> 
+                <div class="form-group">
+                    <label for="select-size"><span class="info-footer">Tamanho</span></label>
+                    <select class="form-control" id="select-size">
+                        <option selected>Escolha um tamanho</option>
+                        <option>P</option>
+                        <option>M</option>
+                        <option>G</option>
+                        <option>GG</option>
+                    </select>
+                </div>
                 <div class="row input-product">
+                    <div class="col-sm-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <button type="button" class="btn-minus btn btn-secondary"><i class="fas fa-minus"></i></button>
+                            </div>
+                            <input type="text" id="quantity" name="quantity" class="form-control text-center" value="1" min="1" max="100">
+                            <div class="input-group-append">
+                                <button type="button" class="btn-plus btn btn-secondary"><i class="fas fa-plus"></i></button>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-sm-6">
                         <button type="button" class="btn btn-success btn-block btn-buy">Comprar</button>
                     </div>

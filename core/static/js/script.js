@@ -8,7 +8,7 @@ $(window).scroll(function() {
 });
 
 // Dropdown hover
-$(".dropdown").hover(
+$('.dropdown').hover(
     function() {
         $('.dropdown-menu', this).fadeIn(100);
     },
@@ -16,3 +16,17 @@ $(".dropdown").hover(
         $('.dropdown-menu', this).fadeOut(100);
     }
 );
+
+// Number snippet
+$(document).ready(function(){
+    $('.btn-plus').click(function(){
+        var quantity = parseInt($('#quantity').val());
+        $('#quantity').val(quantity + 1);
+    });
+        $('.btn-minus').click(function(){
+        var quantity = parseInt($('#quantity').val());
+        if(quantity > 0){
+            $('#quantity').val(quantity - 1);
+        }
+    });
+});
