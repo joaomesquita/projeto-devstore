@@ -1,11 +1,15 @@
 from django.contrib import admin
-from .models import Product, Category, ProductVariation, ProductImage
+from .models import Product, Category, Size, ProductVariation, ProductImage
 
 # Register your models here.
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['name', 'slug', 'created', 'modified']
     search_fields = ['name', 'slug']
     list_filter = ['created', 'modified']
+
+class SizeAdmin(admin.ModelAdmin):
+    list_display = ['size']
+    search_fields = ['size']
 
 class ProductVariationInline(admin.TabularInline):
     model = ProductVariation
@@ -23,3 +27,4 @@ class ProductAdmin(admin.ModelAdmin):
 
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Product, ProductAdmin)
+admin.site.register(Size, SizeAdmin)
