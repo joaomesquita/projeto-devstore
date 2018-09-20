@@ -66,7 +66,12 @@
             </div>
             <div> 
                 <h1 class="title-product">{{ product }}</h1>
-                <p class="price-product">R$ {{ product.price }}</p>
+                {% if product.sale %}
+                    <p class="previous-price-product">De: R$ {{ product.price }}</p>
+                    <p class="price-product">Por: R$ {{ product.sale }}</p>
+                {% else %}
+                    <p class="price-product">R$ {{ product.price }}</p>
+                {% endif %}
                 <p class="description-product">{{ product.description }}</p> 
                 <div class="form-group">
                     <label for="select-size"><span class="info-footer">Tamanho</span></label>
