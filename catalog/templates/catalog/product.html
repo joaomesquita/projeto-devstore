@@ -72,10 +72,9 @@
                     <label for="select-size"><span class="info-footer">Tamanho</span></label>
                     <select class="form-control" id="select-size">
                         <option selected>Escolha um tamanho</option>
-                        <option>P</option>
-                        <option>M</option>
-                        <option>G</option>
-                        <option>GG</option>
+                        {% for product_sizes in product.size.all %}
+                            <option>{{ product_sizes.size }}</option>
+                        {% endfor %}
                     </select>
                 </div>
                 <div class="row input-product">
