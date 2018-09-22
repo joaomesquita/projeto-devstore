@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block title %} {{ product }} | {{ block.super }} {% endblock %}
 
 {% block container %}
@@ -9,23 +11,12 @@
             <div class="gallery-itens invisible-scrollbar">
                 <ul class="nav nav-tabs">
                     <li class="active">
-                        <a href="#a" data-toggle="tab" aria-expanded="true">
-                            <img class="card-img rounded-0" src="https://i.imgur.com/vqr59nY.jpg" alt="Card image">
-                        </a>
-                    </li>
-                    <li class="">
-                        <a href="#b" data-toggle="tab" aria-expanded="true">
-                            <img class="card-img rounded-0" src="https://i.imgur.com/liucuJK.jpg" alt="Card image">
-                        </a>
-                    </li>
-                    <li class="">
-                        <a href="#c" data-toggle="tab" aria-expanded="true">
-                            <img class="card-img rounded-0" src="https://i.imgur.com/EzxeCyI.jpg" alt="Card image">
-                        </a>
-                    </li>
-                    <li class="">
-                        <a href="#d" data-toggle="tab" aria-expanded="true">
-                            <img class="card-img rounded-0" src="https://i.imgur.com/6obQd6t.jpg" alt="Card image">
+                        <a href="{{ product }}" data-toggle="tab" aria-expanded="true">
+                            {% if producy.image %}
+                                <img class="card-img rounded-0" src="{{ product.image.url }}" alt="Card image">
+                            {% else %}
+                                <img class="card-img rounded-0" src="{% static 'img/bg-product.png' %}" alt="Card image">
+                            {% endif %}
                         </a>
                     </li>
                 </ul>
@@ -33,24 +24,13 @@
         </div>
         <div class="col-sm-5">
             <div class="tab-content">
-                <div class="tab-pane active" id="a">
+                <div class="tab-pane active" id="{{ product }}">
                     <div class="profile-image">
-                        <img class="card-img rounded-0" src="https://i.imgur.com/vqr59nY.jpg" alt="Card image">
-                    </div>
-                </div>
-                <div class="tab-pane" id="b">
-                    <div class="profile-image">
-                        <img class="card-img rounded-0" src="https://i.imgur.com/liucuJK.jpg" alt="Card image">
-                    </div>
-                </div>
-                <div class="tab-pane" id="c">
-                    <div class="profile-image">
-                        <img class="card-img rounded-0" src="https://i.imgur.com/EzxeCyI.jpg" alt="Card image">
-                    </div>
-                </div>
-                <div class="tab-pane" id="d">
-                    <div class="profile-image">
-                        <img class="card-img rounded-0" src="https://i.imgur.com/6obQd6t.jpg" alt="Card image">
+                        {% if producy.image %}
+                            <img class="card-img rounded-0" src="{{ product.image.url }}" alt="Card image">
+                        {% else %}
+                            <img class="card-img rounded-0" src="{% static 'img/bg-product.png' %}" alt="Card image">
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -58,9 +38,8 @@
         <div class="col-sm-5">
             <div>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Inicío</a></li>
-                    <li class="breadcrumb-item"><a href="#">Catalogo</a></li>
-                    <li class="breadcrumb-item"><a href="#">Produtos</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'index' %}">Inicío</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'catalog:product_list' %}">Produtos</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Camiseta Programador</li>
                 </ol>
             </div>
