@@ -2,26 +2,26 @@
 
 {% load static %}
 
-{% block title %} Produtos | {{ block.super }} {% endblock %}
+{% block title %}Produtos | {{ block.super }} {% endblock %}
 
 {% block container %}
-<div class="container content">
+<div class="container div-content">
     <div class="d-flex justify-content-center">
-        <h1 class="title-content">Produtos</h1>
+        <h1 class="title-h1">Produtos</h1>
     </div>
-    <div class="card-deck distance-content">
+    <div class="card-deck div-distance">
         {% for product in product_list %}
         <div class="card border-0">
             <a class="card-link" href="{{ product.get_absolute_url }}">
                 {% if product.image %}
-                    <img class="card-img rounded-0" src="{{ product.image.url }}" alt="Card image">
+                <img class="card-img rounded-0" src="{{ product.image.url }}" alt="Product image">
                 {% else %}
-                    <img class="card-img rounded-0" src="{% static 'img/bg-product.png' %}" alt="Card image">
+                <img class="card-img rounded-0" src="{% static 'img/bg-product.png' %}" alt="Product image">
                 {% endif %}
                 <div class="card-img-overlay d-flex align-items-end">
                     <div>
-                        <h2 class="title-card">{{ product }}</h2>
-                        <p class="price-card">R$ {{ product.price }}</p>
+                        <h2 class="card-title">{{ product }}</h2>
+                        <p class="card-price">R$ {{ product.price }}</p>
                     </div>
                 </div>
             </a>

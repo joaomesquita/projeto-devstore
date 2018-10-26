@@ -14,7 +14,7 @@
         <nav class="navbar bg-white fixed-top">
             <div class="container menu">
                 <ul class="nav justify-content-start">
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown link-item">
                         <a class="nav-link menu-item" href="{% url 'catalog:product_list' %}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-bars"></i>Categorias
                         </a>
@@ -29,18 +29,22 @@
                     <p class="logo"><a href="{% url 'index' %}" title="Devstore"></a></p>
                 </ul>
                 <ul class="nav justify-content-end">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link menu-item" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Olá, João<i class="fas fa-angle-down"></i>
-                        </a>
-                        <div class="box-shadow dropdown-menu border-0" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Minha conta</a>
-                            <a class="dropdown-item" href="#">Meus pedidos</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Sair</a>
-                        </div>
+                    <li class="nav-item dropdown link-item">
+                        {% if user.is_authenticated %}
+                            <a class="nav-link menu-item" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Olá, {{ user.get_short_name }}<i class="fas fa-angle-down"></i>
+                            </a>
+                            <div class="box-shadow dropdown-menu border-0" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{% url 'accounts:index' %}">Minha conta</a>
+                                <a class="dropdown-item" href="#">Meus pedidos</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{% url 'accounts:logout' %}">Sair</a>
+                            </div>
+                        {% else %}
+                            <a class="nav-link menu-item" href="{% url 'accounts:login' %}">Entrar</a>
+                        {% endif %}
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item link-item">
                         <a class="nav-link menu-item" href="#"><i class="fas fa-shopping-basket"></i>0 item</a>
                     </li>
                 </ul>
@@ -48,48 +52,48 @@
         </nav>
     </header>
     <main>
-        {% block container %}{% endblock %}
+    {% block container %}{% endblock %}
     </main>
     <footer class="footer">
-        <div class="container text-center text-md-left ">
+        <div class="container">
             <div class="row">
-                <div class="col-md-3 mt-md-0 mt-3">
+                <div class="col-md-3">
                     <p class="logo"><a title="Devstore"></a></p>
-                    <ul class="footer-item">
+                    <ul class="link-item">
                         <li>
-                            <p><span class="info-footer">Devstore</span> © 2018</p>
+                            <p><span class="span-item">Devstore</span> © 2018</p>
                             <p>Todos os direitos reservados.</p>
                         </li>
                     </ul>
                 </div>
-                <div class="col-md-3 mt-md-0 mt-3">
-                    <h5 class="title-footer">Institucional</h5>
-                    <ul class="footer-item">
+                <div class="col-md-3">
+                    <h5 class="title-h5">Institucional</h5>
+                    <ul class="link-item">
                         <li ><a href="#">Início</a></li>
                         <li ><a href="#">Perguntas frequentes</a></li>
                         <li ><a href="#">Quem somos</a></li>
                         <li ><a href="#">Contato</a></li>
                     </ul>
                 </div>
-                <div class="col-md-3 mb-md-0 mb-3">
-                    <h5 class="title-footer">Sac</h5>
-                    <ul class="footer-item">
+                <div class="col-md-3">
+                    <h5 class="title-h5">Sac</h5>
+                    <ul class="link-item">
                         <li><a href="#">(18) 98168-8676</a></li>
                         <li><a href="#">contato@devstore.com</a></li>
                         <li>
-                            <p><span class="info-footer">Horário de Atendimento</span></p>
+                            <p><span class="span-item">Horário de Atendimento</span></p>
                             <p>Segunda a sexta, das 9h às 18h</p>
                         </li>
                     </ul>
                 </div>
-                <div class="col-md-3 mb-md-0 mb-3">
-                    <h5 class="title-footer">Pagamento</h5>
-                    <ul class="footer-item">
+                <div class="col-md-3">
+                    <h5 class="title-h5">Pagamento</h5>
+                    <ul class="link-item">
                         <li><p>Pagseguro</p></li>
                     </ul>
                 </div>
                 <div class="col-md-12 py-5">
-                    <div class="footer-icon d-flex justify-content-center">
+                    <div class="icon d-flex justify-content-center">
                         <a href="#"><i class="fab fa-facebook-f fa-lg mr-md-5 mr-3 fa-2x"></i></a>
                         <a href="#"><i class="fab fa-instagram fa-lg mr-md-5 mr-3 fa-2x"></i></a>
                         <a href="#"><i class="fab fa-twitter fa-lg mr-md-5 mr-3 fa-2x"></i></a>

@@ -2,20 +2,20 @@
 
 {% load static %}
 
-{% block title %} {{ product }} | {{ block.super }} {% endblock %}
+{% block title %}{{ product }} | {{ block.super }} {% endblock %}
 
 {% block container %}
-<div class="container content">
+<div class="container div-content">
     <div class="row">
         <div class="col-sm-2">
-            <div class="gallery-itens invisible-scrollbar">
+            <div class="gallery-item invisible-scrollbar">
                 <ul class="nav nav-tabs">
-                    <li class="active">
+                    <li>
                         <a href="{{ product }}" data-toggle="tab" aria-expanded="true">
-                            {% if producy.image %}
-                                <img class="card-img rounded-0" src="{{ product.image.url }}" alt="Card image">
+                            {% if product.image %}
+                            <img class="card-img rounded-0" src="{{ product.image.url }}" alt="Product image">
                             {% else %}
-                                <img class="card-img rounded-0" src="{% static 'img/bg-product.png' %}" alt="Card image">
+                            <img class="card-img rounded-0" src="{% static 'img/bg-product.png' %}" alt="Product image">
                             {% endif %}
                         </a>
                     </li>
@@ -26,10 +26,10 @@
             <div class="tab-content">
                 <div class="tab-pane active" id="{{ product }}">
                     <div class="profile-image">
-                        {% if producy.image %}
-                            <img class="card-img rounded-0" src="{{ product.image.url }}" alt="Card image">
+                        {% if product.image %}
+                        <img class="card-img rounded-0" src="{{ product.image.url }}" alt="Product image">
                         {% else %}
-                            <img class="card-img rounded-0" src="{% static 'img/bg-product.png' %}" alt="Card image">
+                        <img class="card-img rounded-0" src="{% static 'img/bg-product.png' %}" alt="Product image">
                         {% endif %}
                     </div>
                 </div>
@@ -40,30 +40,31 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{% url 'index' %}">Inicío</a></li>
                     <li class="breadcrumb-item"><a href="{% url 'catalog:product_list' %}">Produtos</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Camiseta Programador</li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ product }}</li>
                 </ol>
             </div>
             <div> 
-                <h1 class="title-product">{{ product }}</h1>
+                <h1 class="product-title">{{ product }}</h1>
                 {% if product.sale %}
-                    <p class="previous-price-product">De: R$ {{ product.price }}</p>
-                    <p class="price-product">Por: R$ {{ product.sale }}</p>
+                <p class="product-previous-price">De: R$ {{ product.price }}</p>
+                <p class="product-price">Por: R$ {{ product.sale }}</p>
                 {% else %}
-                    <p class="price-product">R$ {{ product.price }}</p>
+                <p class="product-price">R$ {{ product.price }}</p>
                 {% endif %}
-                <p class="description-product">{{ product.description }}</p> 
-                <div class="form-group">
-                    <label for="select-size"><span class="info-footer">Tamanho</span></label>
-                    <select class="form-control" id="select-size">
-                        <option selected>Escolha um tamanho</option>
-                        {% for product_sizes in product.size.all %}
-                            <option>{{ product_sizes.size }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <div class="row input-product">
-                    <div class="col-sm-6">
-                        <div class="input-group mb-3">
+                <p class="text-justify">{{ product.description }}</p>
+                <div class="row">
+                    <div class="col">
+                        <label for="select-size"><span class="span-item">Tamanho</span></label>
+                        <select class="form-control" id="select-size">
+                            <option selected>Selecione...</option>
+                            {% for product in product.size.all %}
+                            <option>{{ product.size }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label><span class="span-item">Quantidade</span></label>
+                        <div class="input-group mb-4">
                             <div class="input-group-prepend">
                                 <button type="button" class="btn-minus btn btn-secondary"><i class="fas fa-minus"></i></button>
                             </div>
@@ -73,10 +74,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6">
-                        <button type="button" class="btn btn-success btn-block btn-buy">Comprar</button>
-                    </div>
-                </div>
+                </div> 
+                <a class="product-button" href="#">Comprar</a>
             </div>
         </div>
     </div>
