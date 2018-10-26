@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% load widget_tweaks %}
+
+{% block title %}Entrar | {{ block.super }}{% endblock %}
+
+{% block container %}
+<div class="container div-content">
+    <div class="d-flex justify-content-center">
+        <h1 class="title-h1">Cadastre-se ou acesse sua conta</h1>
+    </div>
+    <div class="row div-distance">
+        <div class="col">
+            <div class="page-header">
+                <h5 class="title-h5">Cadastre-se</h5>
+            </div>
+            <div>
+                <p class="text-justify">Ao criar uma conta em nossa loja, você será capaz de fechar pedidos com mais agilidade, 
+                cadastrar endereço, acompanhar seus pedidos, entre outras vantagens.</p>
+                <a class="button" href="{% url 'accounts:register' %}">Criar conta</a>
+            </div>
+        </div>
+        <div class="col">
+            <div class="page-header">
+                <h5 class="title-h5">Clientes cadastrados</h5>
+            </div>
+            <div>
+                <p class="text-justify">Se você já possui uma conta, informe os dados de acesso.</p>
+                <form class="form" method="post">
+                    {% csrf_token %}
+                    {% for error in form.non_field_errors %}
+                    <div class="alert alert-danger">
+                        {{ error }}
+                    </div>
+                    {% endfor %}
+                    <div class="form-row">
+                        <div class="form-group col-md-6{% if form.username.errors %} has-error {% endif %}">
+                            <label for="{{ form.username.auto_id }}">{{ form.username.label }}</label>
+                            {% render_field form.username class="form-control" %}
+                            {% for error in form.username.errors %}
+                            <span class="help-block">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group col-md-6{% if form.password.errors %} has-error {% endif %}">
+                            <label for="{{ form.password.auto_id }}">{{ form.password.label }}</label>
+                            {% render_field form.password class="form-control" %}
+                            {% for error in form.password.errors %}
+                            <span class="help-block">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <button type="submit" class="button">Entrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Minha Conta | {{ block.super }}{% endblock %}
+
+{% block container %}
+<div class="container div-content">
+    <div class="d-flex justify-content-center">
+        <h1 class="title-h1">Minha conta</h1>
+    </div>
+    <div class="div-distance">
+        <div class="page-header">
+            <h3 class="title-h3">Olá, {{ user.name }}</h3>
+            <p class="text-justify">Aqui é possível ver um resumo das suas atividades e atualizar suas informações.</p>
+        </div>
+        <div class="row div-distance">
+            <div class="col">
+                <div class="page-header">
+                    <h5 class="title-h5">Dados pessoais</h5>
+                </div>
+                <div class="link-item">
+                    {% if user %}
+                    <p class="mb-1">{{ user.name }}</p>
+                    <p>{{ user.email }}</p>
+                    {% endif %}
+                </div>
+                <a class="button" href="{% url 'accounts:update_user' %}">Alterar dados</a>
+                <a class="button" href="{% url 'accounts:update_password' %}">Alterar senha</a>
+            </div>
+            <div class="col">
+                <div class="page-header">
+                    <h5 class="title-h5">Endereço de entrega e cobrança</h5>
+                </div>
+                <div class="link-item">
+                    {% if user.street %}
+                    <p class="mb-1">{{ user.street }}, {{ user.number }}, {{ user.complement }}, {{ user.district }}</p>
+                    <p>{{ user.city }}, {{ user.state }}, {{ user.zipcode }}</p>
+                    {% else %}
+                    <p class="text-justify">Você não possui um endereço de entrega e cobrança.</p>
+                    {% endif %} 
+                </div>
+                <a class="button" href="{% url 'accounts:update_address' %}">Alterar endereço</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
