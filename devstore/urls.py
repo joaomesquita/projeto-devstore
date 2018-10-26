@@ -23,5 +23,6 @@ from core import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
-    path('catalogo/', include('catalog.urls', namespace='catalog')),
+    path('conta/', include('accounts.urls', namespace='accounts')),
+    path('catalogo/', include('catalog.urls', namespace='catalog'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
