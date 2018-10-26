@@ -11,167 +11,85 @@ main {
     margin-top: 24vh;
 }
 
-.content {
+label {
+    font-size: 0.8em;
+}
+
+.div-content {
     padding-top: 10vh;
     padding-bottom: 10vh;
 }
 
+.div-distance {
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+}
+
+
+.link-item li {
+    padding-top: 2vh;
+    list-style-type: none;
+}
+
+.link-item a,
+.link-item p,
+.icon a {
+    color: #818181;
+}
+
+.link-item a:hover,
+.icon a:hover {
+    color: #373a3c;
+    text-decoration: none;
+}
+
+.span-item {
+    font-weight: bold;
+    color: #373a3c;
+}
+
+.title-h1 {
+    font-size: 3em;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #373a3c;
+}
+
+.title-h3,
+.title-h5 {
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #373a3c;
+}
+
+.button {
+    background-color: #373a3c;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    padding: 12px 32px;
+    display: inline-block;
+    text-transform: uppercase;
+    transition: background-color 0.4s;
+}
+
+.button:hover {
+    background-color: #ffffff;
+    color: #373a3c;
+    border: 1px solid #373a3c;
+    outline: none;
+    text-decoration: none;
+}
+
 /* Icon */
 
-.fa-bars {
+.fa-bars,
+.fa-shopping-basket {
     margin-right: 10px;
 }
 
 .fa-angle-down {
     margin-left: 10px;
-}
-
-.fa-shopping-basket {
-    margin-right: 10px;
-}
-
-/* Navbar */
-
-.navbar {
-    background-color: #ffffff;
-}
-
-.menu {
-    padding-top: 5vh;
-    padding-bottom: 5vh;
-    transition: padding 0.3s ease;
-}
-
-.menu-item {
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 0.9em;
-    color: #818181;
-}
-
-.menu-item:hover {
-    color: #373a3c;
-}
-
-.dropdown-menu a {
-    font-size: 0.9em;
-    padding-top: 1vh;
-    padding-bottom: 2vh;
-    padding-left: 2vw;
-    padding-right: 10vw;
-    color: #818181;
-}
-
-.dropdown-menu a:hover {
-    color: #373a3c;
-    background-color: #ffffff;
-}
-
-.logo a {
-    display: table;
-    width: 180px;
-    height: 60px;
-    background-size: 100%;
-    background: no-repeat url("../img/logo.svg");
-}
-
-.box-shadow {
-    padding: 10vw;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.affix {
-    padding-top: 1em !important;
-    padding-bottom: 0.5em !important;      
-    transition:padding 0.3s linear;  
-}
-
-/* Main */
-
-.title-content {
-    font-size: 4em;
-    font-weight: 900;
-    text-transform: uppercase;
-    color: #373a3c;
-}
-
-.distance-content {
-    margin-top: 5vh;
-    margin-bottom: 5vh;
-}
-
-.page-item a {
-    color: #373a3c;
-}
-
-.page-item a:hover {
-    color: #818181;
-}
-
-.page-item.active a.page-link{
-    background-color: #373a3c;
-    border-color: #373a3c;
-}
-
-/* Gallery Tab */
-
-.gallery-itens {
-    overflow: auto;
-    height: 68.5vh;
-}
-
-.invisible-scrollbar::-webkit-scrollbar {
-    display: none;
-}
-
-/* Product */
-
-.title-product {
-    font-weight: 900;
-    text-transform: uppercase;
-}
-
-.price-product {
-    font-weight: bold;
-    font-size: 1.5em;
-}
-
-.previous-price-product {
-    color: #818181;
-    text-decoration: line-through;
-    font-size: 1.3em;
-}
-
-.description-product {
-    text-align: justify;
-}
-
-.btn-buy {
-    text-transform: uppercase;
-    font-weight: 800;
-}
-
-.title-product,
-.price-product,
-.description-product,
-.input-product {
-    margin-top: 3vh;
-    margin-bottom: 3vh;
-}
-
-/* Card */
-
-.title-card {
-    font-weight: 900;
-    text-transform: uppercase;
-    color: #373a3c;
-}
-
-.price-card {
-    font-size: 1.5em;
-    font-weight: 600; 
-    text-transform: uppercase;
-    color: #373a3c;
 }
 
 /* Breadcrumb */
@@ -192,6 +110,129 @@ ol.breadcrumb {
     text-decoration: none;
 }
 
+/* Navbar */
+
+.logo a {
+    display: table;
+    width: 180px;
+    height: 60px;
+    background-size: 100%;
+    background: no-repeat url("../img/logo.svg");
+}
+
+.menu {
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+    transition: padding 0.3s ease;
+}
+
+.menu-item {
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9em;
+}
+
+.dropdown-menu a {
+    font-size: 0.9em;
+    padding-top: 1vh;
+    padding-bottom: 2vh;
+    padding-left: 2vw;
+    padding-right: 10vw;
+}
+
+.dropdown-menu a:hover {
+    background-color: #ffffff;
+}
+
+.box-shadow {
+    padding: 10vw;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.affix {
+    padding-top: 1em !important;
+    padding-bottom: 0.5em !important;      
+    transition:padding 0.3s linear;  
+}
+
+/* Main */
+
+.page-item a {
+    color: #373a3c;
+}
+
+.page-item a:hover {
+    color: #818181;
+}
+
+.page-item.active a.page-link{
+    background-color: #373a3c;
+    border-color: #373a3c;
+}
+
+/* Gallery product */
+
+.gallery-item {
+    overflow: auto;
+    height: 68.5vh;
+}
+
+.invisible-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+/* Card product */
+
+.card-title {
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #373a3c;
+}
+
+.card-price {
+    font-size: 1.5em;
+    font-weight: 600; 
+    text-transform: uppercase;
+    color: #373a3c;
+}
+
+/* Product */
+
+.product-title {
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.product-price {
+    font-weight: bold;
+    font-size: 1.7em;
+}
+
+.product-previous-price {
+    color: #818181;
+    text-decoration: line-through;
+    font-size: 1.3em;
+}
+
+.product-button {
+    background-color: #00ce00;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    padding: 12px 185px;
+    display: inline-block;
+    text-transform: uppercase;
+    transition: background-color 0.4s;
+}
+
+.product-button:hover {
+    background-color: #ffffff;
+    color: #00ce00;
+    border: 1px solid #00ce00;
+    outline: none;
+    text-decoration: none;
+}
+
 /* Footer */
 
 .footer {
@@ -199,32 +240,4 @@ ol.breadcrumb {
     border-top: 1px solid #cececeab;
     padding-top: 10vh;
     padding-bottom: 20vh;
-}
-
-.title-footer {
-    font-weight: 700;
-    text-transform: uppercase;
-    color: #373a3c;
-}
-
-.info-footer {
-    font-weight: bold;
-    color: #373a3c;
-}
-
-.footer-item li {
-    padding-top: 2vh;
-    list-style-type: none;
-}
-
-.footer-item a, 
-.footer-item p,
-.footer-icon a {
-    color: #818181;
-}
-
-.footer-item a:hover,
-.footer-icon a:hover {
-    color: #373a3c;
-    text-decoration: none;
 }
