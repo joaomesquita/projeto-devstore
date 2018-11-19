@@ -30,3 +30,18 @@ $(document).ready(function(){
         }
     });
 });
+
+// ALert
+window.setTimeout(function() {
+    $(".messages").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove(); 
+    });
+}, 4000);
+
+// Mask inputs
+$(document).ready(function(){
+    $('.date').mask('00/00/0000');
+    $('.phone_with_ddd').mask('(00) 00000-0000');
+    $('.cpf').mask('000.000.000-00', {reverse: true});
+    $('.cep').mask('00000-000');
+});
