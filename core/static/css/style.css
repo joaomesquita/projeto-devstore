@@ -43,6 +43,15 @@ label {
     text-decoration: none;
 }
 
+.page-item {
+    color: #373a3c;
+}
+
+.page-item:hover {
+    color: #818181;
+    text-decoration: none;
+}
+
 .span-item {
     font-weight: bold;
     color: #373a3c;
@@ -79,6 +88,26 @@ label {
     border: 1px solid #373a3c;
     outline: none;
     text-decoration: none;
+}
+
+.button-icon {
+    background: none;
+    color: #373a3c;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.pagseguro-logo {
+    width: 140px;
+    height: 30px;
+    background-size: 100%;
+}
+
+.pagseguro {
+    width: 50px;
+    height: 30px;
+    background-size: 100%;
 }
 
 /* Icon */
@@ -155,19 +184,19 @@ ol.breadcrumb {
     transition:padding 0.3s linear;  
 }
 
-/* Main */
+/* Pagination */
 
-.page-item a {
+.page ul li a {
     color: #373a3c;
 }
 
-.page-item a:hover {
+.page ul li a:hover {
     color: #818181;
 }
 
-.page-item.active a.page-link{
-    background-color: #373a3c;
-    border-color: #373a3c;
+.page .page-item.active a {
+    background: #373a3c;
+    border-color: #818181;
 }
 
 /* Gallery product */
@@ -184,16 +213,37 @@ ol.breadcrumb {
 /* Card product */
 
 .card-title {
-    font-weight: 900;
+    font-weight: 700;
     text-transform: uppercase;
     color: #373a3c;
 }
 
+.card-title:hover {
+    color: #818181;
+    text-decoration: none;
+}
+
 .card-price {
-    font-size: 1.5em;
+    font-size: 1.2em;
     font-weight: 600; 
-    text-transform: uppercase;
     color: #373a3c;
+}
+
+.card-previous-price {
+    color: #818181;
+    text-decoration: line-through;
+    font-size: 1.2em;
+}
+
+.card-sale {
+    font-size: 1.2em;
+    font-weight: 600; 
+    color: #373a3c;
+}
+
+.card-img-checkout {
+    width: 100px;
+    height: 100px;
 }
 
 /* Product */
