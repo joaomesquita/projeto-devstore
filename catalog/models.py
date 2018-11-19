@@ -1,6 +1,5 @@
 from django.db import models
 from django.urls import reverse
-from cloudinary.models import CloudinaryField
 
 # Create your models here.
 class Category(models.Model):
@@ -21,22 +20,15 @@ class Category(models.Model):
         return reverse('catalog:category', kwargs={'slug': self.slug})
 
 class Size(models.Model):
-    size = models.CharField('Tamanho', max_length=3, null=True, blank=True)
+    name = models.CharField('Nome', max_length=3, null=True, blank=True)
 
     class Meta:
         verbose_name = 'Tamanho'
         verbose_name_plural = 'Tamanhos'
-        ordering = ['-size']
+        ordering = ['-name']
 
     def __str__(self):
-        return self.size
-
-#class Image(models.Model):
-#    image = models.FileField('Imagem', null=True, blank=True)
-#
-#    class Meta:
-#        verbose_name = 'Imagem'
-#        verbose_name_plural = 'Imagens'
+        return self.name
 
 class Product(models.Model):
     name = models.CharField('Nome', max_length=100)
@@ -45,9 +37,9 @@ class Product(models.Model):
     description = models.TextField('Descrição', blank=True)
     price = models.DecimalField('Preço', decimal_places=2, max_digits=8)
     sale = models.DecimalField('Preço Promocional', decimal_places=2, max_digits=8, null=True, blank=True)
-    quantity = models.IntegerField('Quantidade', null=True, blank=True)
+    quantity = models.PositiveIntegerField('Quantidade', default=0)
     size = models.ManyToManyField('catalog.Size', through='catalog.ProductVariation')
-    image = models.FileField(upload_to='products/%Y/%m/%d/', null=True, blank=True)
+    image = models.FileField(upload_to='products/%Y/%m/%d/', null=True, blank=True, verbose_name='Imagem')
     created = models.DateTimeField('Criado em', auto_now_add=True)
     modified = models.DateTimeField('Modificado em', auto_now=True)
 
@@ -62,26 +54,15 @@ class Product(models.Model):
     def get_absolute_url(self):
         return reverse('catalog:product', kwargs={'slug': self.slug})
 
-#class ProductImage(models.Model):
-#    image = models.ForeignKey('catalog.Image', on_delete=models.CASCADE)
-#    product = models.ForeignKey('catalog.Product', on_delete=models.CASCADE)
-#
-#    class Meta:
-#        verbose_name = 'Imagem'
-#        verbose_name_plural = 'Imagens'
-#
-#    def __str__(self):
-#        return self.product.name
-
 class ProductVariation(models.Model):
-    sizes = models.ForeignKey('catalog.Size', verbose_name='Tamanho', on_delete=models.CASCADE)
-    products = models.ForeignKey('catalog.Product', on_delete=models.CASCADE)
-    quantity = models.IntegerField('Quantidade', null=True)
+    size = models.ForeignKey('catalog.Size', verbose_name='Tamanho', on_delete=models.CASCADE)
+    product = models.ForeignKey('catalog.Product', on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField('Quantidade', default=0)
 
     class Meta:
         verbose_name = 'Variação'
         verbose_name_plural = 'Variações'
-        ordering = ['sizes']
+        ordering = ['size']
 
     def __str__(self):
-        return self.products.name
+        return self.product.name

@@ -9,20 +9,12 @@ class CategoryAdmin(admin.ModelAdmin):
     list_filter = ['created', 'modified']
 
 class SizeAdmin(admin.ModelAdmin):
-    list_display = ['size']
-    search_fields = ['size']
-
-#class ImageAdmin(admin.ModelAdmin):
-#    list_display = ['image']
-#    search_fields = ['image']
+    list_display = ['name']
+    search_fields = ['name']
 
 class ProductVariationInline(admin.TabularInline):
     model = ProductVariation
     extra = 1
-
-#class ProductImageInline(admin.TabularInline):
-#    model = ProductImage
-#    extra = 4
 
 class ProductAdmin(admin.ModelAdmin):
     list_display = ['name', 'slug', 'category', 'created', 'modified']
@@ -33,4 +25,3 @@ class ProductAdmin(admin.ModelAdmin):
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Size, SizeAdmin)
-#admin.site.register(Image, ImageAdmin)
