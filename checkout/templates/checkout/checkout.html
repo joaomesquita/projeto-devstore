@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% load widget_tweaks %}
+
+{% load calculation %}
+
+{% block title %}Finalização da Compra | {{ block.super }}{% endblock  %}
+
+{% block container %}
+<div class="container div-content">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'index' %}">Inicío</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'checkout:cart_item' %}">Carrinho de Compras</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Finalização da Compra</li>
+    </ol>
+    <div class="d-flex justify-content-center">
+        <h1 class="title-h1">Finalização da Compra</h1>
+    </div> 
+    <div class="div-distance">
+        <div class="alert alert-warning">
+            <span class="span-item">Redirecionando!</span> Você será redirecionado para o PagSeguro em 0 segundos ou se preferir, 
+            <a href="{% url 'checkout:pagseguro_view' order.pk %}"><span class="span-item">clique aqui</span></a>.
+        </div>
+        <div class="row div-distance">
+            <div class="col">
+                <div class="page-header">
+                    <h5 class="title-h5">Dados do pedido #{{ order.pk }}</h5>
+                </div>
+                <div class="link-item">
+                    <p class="mb-1"><span class="span-item">Situação: </span>{{ order.get_status_display }}</p>
+                    <p class="mb-1"><span class="span-item">Data: </span>{{ order.created|date:"d/m/Y" }}</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="page-header">
+                    <h5 class="title-h5">Dados pessoais</h5>
+                </div>
+                <div class="link-item">
+                    <p class="mb-1"><span class="span-item">Nome: </span>{{ user.name }}</p>
+                    <p class="mb-1"><span class="span-item">CPF: </span>{{ user.cpf }}</p>
+                    {% if user.street %}
+                    <p class="mb-1"><span class="span-item">Endereço: </span>{{ user.street }}, {{ user.number }}, {{ user.complement }}, 
+                        {{ user.district }}, {{ user.city }} / {{ user.state }}, {{ user.zipcode }}</p>
+                    {% else %}
+                    <p class="text-justify">Você não possui um endereço de entrega e cobrança.</p>
+                    {% endif %} 
+                </div>
+            </div>
+            <div class="col">
+                <div class="page-header">
+                    <h5 class="title-h5">Pagamento</h5>
+                </div>
+                <div>
+                    <img class="pagseguro-logo" src="{% static 'img/pagseguro-logo.png' %}" alt="Pagseguro">
+                </div>
+            </div>
+        </div>
+        <div class="row div-distance">
+            <div class="col">
+                <div class="page-header">
+                    <h5 class="title-h5">Itens do pedido</h5>
+                </div>
+                <div class="div-distance">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Produto</th>
+                                <th scope="col">Preço Unitário</th>
+                                <th scope="col">Quantidade</th>
+                                <th scope="col">Sub Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for order in order.items.all %}
+                            <tr>
+                                <td>
+                                    <div class="d-flex flex-row bd-highlight mb-3">
+                                        <div class="p-2 bd-highlight">
+                                            <img class="card-img-checkout rounded-0" src="{{ order.product.image.url }}" alt="Product image">
+                                        </div>
+                                        <div class="p-2 bd-highlight">
+                                            <a class="page-item" href="{{ form.instance.product.get_absolute_url }}">{{ order.product }}</a>
+                                            <p>Tamanho - {{ order.size }}</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>R$ {{ order.price }}</td>
+                                <td>{{ order.quantity }}</td>
+                                <td>R$ {% multiply order.quantity order.price %}</td>
+                            </tr>
+                            {% endfor %}
+                            <tr>
+                                <td colspan="2"></td>
+                                <td><span class="span-item">Subtotal:</span></td>
+                                <td>R$ {{ order.sub_total }}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td><span class="span-item">Frete:</span></td>
+                                <td>Grátis</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td><span class="span-item">Total:</span></td>
+                                <td>R$ {{ order.total }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script type="text/javascript">
+$(window.document.location).attr('href', "{% url 'checkout:pagseguro_view' order.pk %}")
+</script>
+{% endblock %}

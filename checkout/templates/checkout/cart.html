@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% load widget_tweaks %}
+
+{% load calculation %}
+
+{% block title %}Carrinho de Compras | {{ block.super }}{% endblock  %}
+
+{% block container %}
+<div class="container div-content">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'index' %}">Inicío</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Carrinho de Compras</li>
+    </ol>
+    <div class="d-flex justify-content-center">
+        <h1 class="title-h1">Carrinho de Compras</h1>
+    </div> 
+    <div class="div-distance">
+        <form method="post">
+            {% csrf_token %}
+            {{ formset.management_form }}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Produto</th>
+                        <th scope="col">Preço Unitário</th>
+                        <th scope="col">Quantidade</th>
+                        <th scope="col">Sub Total</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for form in formset %}
+                    <tr>
+                        <td>
+                            <div class="d-flex flex-row bd-highlight mb-3">
+                                <div class="p-2 bd-highlight">
+                                    <img class="card-img-checkout rounded-0" src="{{ form.instance.product.image.url }}" alt="Product image">
+                                </div>
+                                <div class="p-2 bd-highlight">
+                                    <a class="page-item" href="{{ form.instance.product.get_absolute_url }}">{{ form.instance.product }}</a>
+                                    <p>Tamanho - {{ form.instance.size }}</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            {% if form.instance.product.sale %}
+                            <p>R$ {{ form.instance.price }}</p>
+                            {% else %}
+                            <p>R$ {{ form.instance.price }}</p>
+                            {% endif %}
+                        </td>
+                        <td>{% render_field form.quantity class='form-control' %}</td>
+                        <td>R$ {% multiply form.instance.quantity form.instance.price %}</td>
+                        <td>
+                            <button value="on" type="submit" name="{{ form.DELETE.html_name }}" class="button-icon"><i class="fas fa-trash-alt"></i></button>
+                            {{ form.id }}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td colspan="3"></td>
+                        <td><span class="span-item">Subtotal:</span></td>
+                        <td>R$ {{ total }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"></td>
+                        <td><span class="span-item">Frete:</span></td>
+                        <td>Grátis</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"></td>
+                        <td><span class="span-item">Total:</span></td>
+                        <td>R$ {{ total }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="d-flex justify-content-end">
+                <a href="{% url 'catalog:product_list' %}" class="button mr-2">Continuar Comprando</a>
+                <button type="submit" class="button mr-2">Atualizar Carrinho</button>
+                <a href="{% url 'checkout:checkout' %}" class="button">Finalizar Compra</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
