@@ -17,7 +17,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField('E-mail', unique=True)
     cpf = models.CharField('CPF', max_length=14)
     gender = models.CharField('Sexo', max_length=1, choices=GENDER_CHOICES)
-    telephone = models.CharField('Telefone', max_length=11, blank=True)
+    telephone = models.CharField('Telefone', max_length=15, blank=True)
     birth = models.DateField('Data de Nascimento', blank=True, null=True)
     street = models.CharField('Rua', max_length=100)
     number = models.CharField('Número', max_length=5)
