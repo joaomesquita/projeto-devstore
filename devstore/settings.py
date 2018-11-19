@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+from django.contrib.messages import constants as message_constants
+import django_heroku
+
 #import cloudinary, cloudinary.uploader, cloudinary.api
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -26,12 +29,13 @@ SECRET_KEY = 'c+h)m+)mj2s19rd@4^sqrc80s4oz%g$!l)^bfp=h@05ys@rsh#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'local.teste.com']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'accounts',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,10 +45,11 @@ INSTALLED_APPS = [
     # Apps
     'core',
     'catalog',
-    'accounts',
+    'checkout',
     # Libs
     'widget_tweaks',
     'localflavor',
+    'django_object_actions',
     #'cloudinary',
 ]
 
@@ -56,6 +61,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'checkout.middleware.cart_item_middleware',
 ]
 
 ROOT_URLCONF = 'devstore.urls'
@@ -137,6 +143,10 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+# Email
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_FILE_PATH = '/sent_emails'
+
 # Auth
 LOGIN_URL = 'accounts:login'
 LOGIN_REDIRECT_URL = 'index'
@@ -148,8 +158,24 @@ AUTHENTICATION_BACKENDS = (
     'accounts.backends.ModelBackend',
 )
 
-# Configuração do cloudinary 
+# Messages
+MESSAGE_TAGS = {
+    message_constants.DEBUG: 'debug',
+    message_constants.INFO: 'info',
+    message_constants.SUCCESS: 'success',
+    message_constants.WARNING: 'warning',
+    message_constants.ERROR: 'danger',
+}
 
+#PagSeguro
+PAGSEGURO_TOKEN = '29243EDC9A34416789EB0A46F189845F'
+PAGSEGURO_EMAIL = 'oficialdevstore@gmail.com'
+PAGSEGURO_SANDBOX = True
+
+#Django-Heroku.
+django_heroku.settings(locals())
+
+# Configuração do cloudinary 
 #cloudinary.config (
 #    cloud_name = 'devstore',
 #    api_key = '719213124598396',
