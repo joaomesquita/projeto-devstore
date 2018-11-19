@@ -24,5 +24,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
     path('conta/', include('accounts.urls', namespace='accounts')),
-    path('catalogo/', include('catalog.urls', namespace='catalog'))
+    path('catalogo/', include('catalog.urls', namespace='catalog')),
+    path('compras/', include('checkout.urls', namespace='checkout'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
