@@ -6,6 +6,11 @@
 
 {% block container %}
 <div class="container div-content">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'index' %}">Inicío</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'accounts:index' %}">Minha Conta</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Alterar Endereço</li>
+        </ol>
         <div class="d-flex justify-content-center">
             <h1 class="title-h1">Alterar endereço</h1>
         </div>
@@ -13,15 +18,55 @@
             <form method="post">
                 {% csrf_token %}
                 <div class="form-row">
-                    {% for field in form %}
-                    <div class="form-group col-md-6{% if field.errors %} has-error {% endif %}">
-                        <label for="{{ field.auto_id }}">{{ field.label }}</label>
-                        {% render_field field class="form-control" %}
-                        {% for error in field.errors %}
+                    <div class="form-group col-md-7{% if field.errors %} has-error {% endif %}">
+                        <label for="{{ form.street.auto_id }}">{{ form.street.label }}</label>
+                        {% render_field form.street class="form-control" %}
+                        {% for error in form.street.errors %}
                         <span class="help-block">{{ error }}</span>
                         {% endfor %}
                     </div>
-                    {% endfor %}
+                    <div class="form-group col-md-2{% if field.errors %} has-error {% endif %}">
+                        <label for="{{ form.number.auto_id }}">{{ form.number.label }}</label>
+                        {% render_field form.number class="form-control" %}
+                        {% for error in form.number.errors %}
+                        <span class="help-block">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    <div class="form-group col-md-3{% if field.errors %} has-error {% endif %}">
+                        <label for="{{ form.complement.auto_id }}">{{ form.complement.label }}</label>
+                        {% render_field form.complement class="form-control" %}
+                        {% for error in form.complement.errors %}
+                        <span class="help-block">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    <div class="form-group col-md-3{% if field.errors %} has-error {% endif %}">
+                        <label for="{{ form.district.auto_id }}">{{ form.district.label }}</label>
+                        {% render_field form.district class="form-control" %}
+                        {% for error in form.district.errors %}
+                        <span class="help-block">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    <div class="form-group col-md-3{% if field.errors %} has-error {% endif %}">
+                        <label for="{{ form.city.auto_id }}">{{ form.city.label }}</label>
+                        {% render_field form.city class="form-control" %}
+                        {% for error in form.city.errors %}
+                        <span class="help-block">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    <div class="form-group col-md-3{% if field.errors %} has-error {% endif %}">
+                        <label for="{{ form.state.auto_id }}">{{ form.state.label }}</label>
+                        {% render_field form.state class="form-control" %}
+                        {% for error in form.state.errors %}
+                        <span class="help-block">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    <div class="form-group col-md-3{% if field.errors %} has-error {% endif %}">
+                        <label for="{{ form.zipcode.auto_id }}">{{ form.zipcode.label }}</label>
+                        {% render_field form.zipcode class="form-control cep" %}
+                        {% for error in form.zipcode.errors %}
+                        <span class="help-block">{{ error }}</span>
+                        {% endfor %}
+                    </div>
                 </div>
                 <a class="button" href="{% url 'accounts:index' %}">Voltar</a>
                 <button type="submit" class="button">Atualizar</button>

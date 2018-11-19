@@ -1,11 +1,17 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% load widget_tweaks %}
 
 {% block title %}Criar Conta | {{ block.super }}{% endblock %}
 
 {% block container %}
 <div class="container div-content">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'index' %}">Inicío</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Criar Conta</li>
+    </ol>
     <div class="d-flex justify-content-center">
         <h1 class="title-h1">Criar Conta</h1>
     </div>
@@ -63,7 +69,7 @@
                 </div>
                 <div class="form-group col-md-3{% if field.errors %} has-error {% endif %}">
                     <label for="{{ form.cpf.auto_id }}">{{ form.cpf.label }}</label>
-                    {% render_field form.cpf class="form-control" %}
+                    {% render_field form.cpf class="form-control cpf" %}
                     {% for error in form.cpf.errors %}
                     <span class="help-block">{{ error }}</span>
                     {% endfor %}
@@ -77,14 +83,14 @@
                 </div>
                 <div class="form-group col-md-3{% if field.errors %} has-error {% endif %}">
                     <label for="{{ form.telephone.auto_id }}">{{ form.telephone.label }}</label>
-                    {% render_field form.telephone class="form-control" %}
+                    {% render_field form.telephone class="form-control phone_with_ddd" %}
                     {% for error in form.telephone.errors %}
                     <span class="help-block">{{ error }}</span>
                     {% endfor %}
                 </div>
                 <div class="form-group col-md-3{% if field.errors %} has-error {% endif %}">
                     <label for="{{ form.birth.auto_id }}">{{ form.birth.label }}</label>
-                    {% render_field form.birth class="form-control" %}
+                    {% render_field form.birth class="form-control date" %}
                     {% for error in form.birth.errors %}
                     <span class="help-block">{{ error }}</span>
                     {% endfor %}
