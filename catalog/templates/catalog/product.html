@@ -2,6 +2,8 @@
 
 {% load static %}
 
+{% load widget_tweaks %}
+
 {% block title %}{{ product }} | {{ block.super }} {% endblock %}
 
 {% block container %}
@@ -9,17 +11,13 @@
     <div class="row">
         <div class="col-sm-2">
             <div class="gallery-item invisible-scrollbar">
-                <ul class="nav nav-tabs">
-                    <li>
-                        <a href="{{ product }}" data-toggle="tab" aria-expanded="true">
-                            {% if product.image %}
-                            <img class="card-img rounded-0" src="{{ product.image.url }}" alt="Product image">
-                            {% else %}
-                            <img class="card-img rounded-0" src="{% static 'img/bg-product.png' %}" alt="Product image">
-                            {% endif %}
-                        </a>
-                    </li>
-                </ul>
+                <a href="{{ product }}" data-toggle="tab" aria-expanded="true">
+                    {% if product.image %}
+                    <img class="card-img rounded-0 mb-2" src="{{ product.image.url }}" alt="Product image">
+                    {% else %}
+                    <img class="card-img rounded-0" src="{% static 'img/bg-product.png' %}" alt="Product image">
+                    {% endif %}
+                </a>
             </div>
         </div>
         <div class="col-sm-5">
@@ -52,30 +50,20 @@
                 <p class="product-price">R$ {{ product.price }}</p>
                 {% endif %}
                 <p class="text-justify">{{ product.description }}</p>
-                <div class="row">
-                    <div class="col">
-                        <label for="select-size"><span class="span-item">Tamanho</span></label>
-                        <select class="form-control" id="select-size">
-                            <option selected>Selecione...</option>
-                            {% for product in product.size.all %}
-                            <option>{{ product.size }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div class="col">
-                        <label><span class="span-item">Quantidade</span></label>
-                        <div class="input-group mb-4">
-                            <div class="input-group-prepend">
-                                <button type="button" class="btn-minus btn btn-secondary"><i class="fas fa-minus"></i></button>
-                            </div>
-                            <input type="text" id="quantity" name="quantity" class="form-control text-center" value="1" min="1" max="100">
-                            <div class="input-group-append">
-                                <button type="button" class="btn-plus btn btn-secondary"><i class="fas fa-plus"></i></button>
-                            </div>
+                <form action="{% url 'checkout:create_cart_item' product.slug %}" method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Tamanho</label>
+                            <select class="form-control mb-3" name="value_size">
+                                {% for product in product.size.all %}
+                                <option value="{{ product.size }}">{{ product.size }}</option>
+                                {% endfor %}
+                            </select>
                         </div>
-                    </div>
-                </div> 
-                <a class="product-button" href="#">Comprar</a>
+                    </div> 
+                    <button class="product-button" type="submit">Comprar</button>
+                </form>
             </div>
         </div>
     </div>
