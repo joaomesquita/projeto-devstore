@@ -1,11 +1,12 @@
 from django.shortcuts import render
-from django.views.generic import CreateView, TemplateView, UpdateView, FormView
+from django.views.generic import CreateView, TemplateView, UpdateView, FormView, ListView, DetailView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import PasswordChangeForm
 
 from .models import User
 from .forms import UserAdminCreationForm
+from checkout.models import Order
 
 # Create your views here.
 class IndexView(LoginRequiredMixin, TemplateView):
@@ -54,8 +55,25 @@ class UpdatePasswordView(LoginRequiredMixin, FormView):
         form.save()
         return super(UpdatePasswordView, self).form_valid(form)
 
+class OrderListView(LoginRequiredMixin, ListView):
+
+    template_name = 'accounts/order_list.html'
+    paginate_by = 5
+
+    def get_queryset(self):
+        return Order.objects.filter(user=self.request.user)
+
+class OrderDetailView(LoginRequiredMixin, DetailView):
+
+    template_name = 'accounts/order_detail.html'
+
+    def get_queryset(self):
+        return Order.objects.filter(user=self.request.user)
+
 index = IndexView.as_view()
 register = RegisterView.as_view()
 update_user = UpdateUserView.as_view()
 update_address = UpdateAddressView.as_view()
 update_password = UpdatePasswordView.as_view()
+order_list = OrderListView.as_view()
+order_detail = OrderDetailView.as_view()
