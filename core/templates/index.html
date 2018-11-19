@@ -6,13 +6,7 @@
 <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img class="d-block w-100" src="http://via.placeholder.com/1280x480" alt="First slide">
-        </div>
-        <div class="carousel-item">
-            <img class="d-block w-100" src="http://via.placeholder.com/1280x480" alt="Second slide">
-        </div>
-        <div class="carousel-item">
-            <img class="d-block w-100" src="http://via.placeholder.com/1280x480" alt="Third slide">
+            <img class="d-block w-100" src="{% static 'img/slide.png' %}" alt="First slide">
         </div>
     </div>
 </div>
@@ -20,24 +14,31 @@
     <div class="d-flex justify-content-center">
         <h1 class="title-h1">Lançamentos</h1>
     </div>
-    <div class="card-deck div-distance">
+    <div class="row div-distance">
         {% for product in product_list %}
-        <div class="card border-0">
-            <a class="card-link" href="{{ product.get_absolute_url }}">
-                {% if product.image %}
-                <img class="card-img rounded-0" src="{{ product.image.url }}" alt="Card image">
-                {% else %}
-                <img class="card-img rounded-0" src="{% static 'img/bg-product.png' %}" alt="Card image">
-                {% endif %}
-                <div class="card-img-overlay d-flex align-items-end">
-                    <div>
-                        <h2 class="card-title">{{ product }}</h2>
+        <div class="col-sm-6 col-lg-4 py-2">
+            <div class="card h-100 border-0">
+                <a href="{{ product.get_absolute_url }}">
+                    {% if product.image %}
+                    <img class="card-img rounded-0" src="{{ product.image.url }}" alt="Card image">
+                    {% else %}
+                    <img class="card-img rounded-0" src="{% static 'img/bg-product.png' %}" alt="Card image">
+                    {% endif %}
+                </a>
+                <div class="card-body text-center">
+                    <a class="card-title text-nowrap bd-highlight" style="width: 5rem;" href="{{ product.get_absolute_url }}">{{ product }}</a>
+                    <div class="d-flex justify-content-around">
+                        {% if product.sale %}
+                        <p class="card-previous-price">R$ {{ product.price }}</p>
+                        <p class="card-sale">R$ {{ product.sale }}</p>
+                        {% else %}
                         <p class="card-price">R$ {{ product.price }}</p>
+                        {% endif %}
                     </div>
                 </div>
-            </a>
+            </div>
         </div>
         {% endfor %}
-    </div>
+    </div>  
 </div>
 {% endblock %}
