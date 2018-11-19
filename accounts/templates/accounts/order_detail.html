@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% load calculation %}
+
+{% block title %}Pedido #{{ order.pk }} | {{ block.super }}{% endblock %}
+
+{% block container %}
+<div class="container div-content">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'index' %}">Inicío</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'accounts:order_list' %}">Meus Pedidos</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Pedido #{{ order.pk }}</li>
+    </ol>
+    <div class="d-flex justify-content-center">
+        <h1 class="title-h1">Pedido #{{ order.pk }}</h1>
+    </div> 
+    <div class="div-distance">
+        <div class="row div-distance">
+            <div class="col">
+                <div class="page-header">
+                    <h5 class="title-h5">Dados do pedido</h5>
+                </div>
+                <div class="link-item">
+                    <p class="mb-1"><span class="span-item">Total: </span>R$ {{ order.total }}</p>
+                    <p class="mb-1"><span class="span-item">Situação: </span>{{ order.get_status_display }}</p>
+                    <p class="mb-1"><span class="span-item">Data: </span>{{ order.created|date:"d/m/Y H:i" }}</p>
+                    <p><span class="span-item">Forma de Pagamento: </span>{{ order.get_payment_option_display }}</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="page-header">
+                    <h5 class="title-h5">Endereço de entrega e cobrança</h5>
+                </div>
+                <div class="link-item">
+                    <p class="mb-1"><span class="span-item">Destinatário: </span>{{ order.user.name }}</p>
+                    {% if user.street %}
+                    <p class="mb-1"><span class="span-item">Endereço: </span>{{ user.street }}, {{ user.number }}, {{ user.complement }}, {{ user.district }}</p>
+                    <p class="mb-1"><span class="span-item">Cidade/UF: </span>{{ user.city }} / {{ user.state }}</p>
+                    <p><span class="span-item">CEP: </span>{{ user.zipcode }}</p>
+                    {% else %}
+                    <p class="text-justify">Você não possui um endereço de entrega e cobrança.</p>
+                    {% endif %} 
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="page-header">
+                    <h5 class="title-h5">Itens do pedido</h5>
+                </div>
+                <div class="div-distance">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Produto</th>
+                                <th scope="col">Preço Unitário</th>
+                                <th scope="col">Quantidade</th>
+                                <th scope="col">Sub Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for order in order.items.all %}
+                            <tr>
+                                <td>
+                                    <div class="d-flex flex-row bd-highlight mb-3">
+                                        <div class="p-2 bd-highlight">
+                                            <img class="card-img-checkout rounded-0" src="{{ order.product.image.url }}" alt="Product image">
+                                        </div>
+                                        <div class="p-2 bd-highlight">
+                                            <a class="page-item" href="{{ order.product.get_absolute_url }}">{{ order.product }}</a>
+                                            <p>Tamanho - {{ order.size }}</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>R$ {{ order.price }}</td>
+                                <td>{{ order.quantity }}</td>
+                                <td>R$ {% multiply order.quantity order.price %}</td>
+                            </tr>
+                            {% endfor %}
+                            <tr>
+                                <td colspan="2"></td>
+                                <td><span class="span-item">Subtotal:</span></td>
+                                <td>R$ {{ order.sub_total }}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td><span class="span-item">Frete:</span></td>
+                                <td>Grátis</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td><span class="span-item">Total:</span></td>
+                                <td>R$ {{ order.total }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

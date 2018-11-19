@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% load pagination %}
+
+{% block title %}Meus Pedidos | {{ block.super }}{% endblock %}
+
+{% block container %}
+<div class="container div-content">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'index' %}">Inicío</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Meus Pedidos</li>
+    </ol>
+    <div class="d-flex justify-content-center">
+        <h1 class="title-h1">Meus Pedidos</h1>
+    </div> 
+    <div class="div-distance">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Produtos</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">Situação</th>
+                    <th scope="col">Data</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in object_list %}
+                <tr>
+                    <th scope="row">
+                        <a class="page-item" href="{% url 'accounts:order_detail' order.pk %}">Pedido #{{ order.pk }}</a>
+                    </th>
+                    <td>
+                        {% for product in order.products %}
+                        <a class="page-item" href="{{ product.get_absolute_url }}">
+                            {{ product.name }}{% if not forloop.last %}, {% endif %}
+                        </a>
+                        {% endfor %}
+                    </td>
+                    <td>R$ {{ order.total }}</td>
+                    <td>{{ order.get_status_display }}</td>
+                    <td>{{ order.created|date:"d/m/Y" }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% pagination request paginator page_obj %}
+    </div>
+</div>
+{% endblock %}
