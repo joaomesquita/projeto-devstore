@@ -1,5 +1,10 @@
 Django==2.1
 psycopg2==2.7.5
-cloudinary==1.12.0
+#cloudinary==1.12.0
 django-widget-tweaks==1.4.3
 django-localflavor==2.1
+pagseguro==0.3.4
+# WeasyPrint==43
+django-object-actions==1.0.0
+gunicorn==19.9.0
+django-heroku
