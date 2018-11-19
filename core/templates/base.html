@@ -36,7 +36,11 @@
                             </a>
                             <div class="box-shadow dropdown-menu border-0" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{% url 'accounts:index' %}">Minha conta</a>
-                                <a class="dropdown-item" href="#">Meus pedidos</a>
+                                <a class="dropdown-item" href="{% url 'accounts:order_list' %}">Meus pedidos</a>
+                                <div class="dropdown-divider"></div>
+                                {% if user.is_staff %}
+                                <a class="dropdown-item" href="{% url 'admin:index' %}">Painel</a>
+                                {% endif %}
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{% url 'accounts:logout' %}">Sair</a>
                             </div>
@@ -45,14 +49,25 @@
                         {% endif %}
                     </li>
                     <li class="nav-item link-item">
-                        <a class="nav-link menu-item" href="#"><i class="fas fa-shopping-basket"></i>0 item</a>
+                        <a class="nav-link menu-item" href="{% url 'checkout:cart_item' %}"><i class="fas fa-shopping-cart"></i></a>
                     </li>
                 </ul>
             </div>
         </nav>
     </header>
     <main>
-    {% block container %}{% endblock %}
+        <div class="container">
+        {% block messages %}
+            {% if messages %}
+                {% for message in messages %}
+                <div {% if message.tags %} class="alert alert-{{ message.tags }} messages" {% endif %}  role="alert">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            {% endif %}
+        {% endblock  %}
+        </div>
+        {% block container %}{% endblock %}     
     </main>
     <footer class="footer">
         <div class="container">
@@ -89,7 +104,9 @@
                 <div class="col-md-3">
                     <h5 class="title-h5">Pagamento</h5>
                     <ul class="link-item">
-                        <li><p>Pagseguro</p></li>
+                        <li>
+                            <img class="pagseguro-logo" src="{% static 'img/pagseguro-logo.png' %}" alt="Pagseguro">
+                        </li>
                     </ul>
                 </div>
                 <div class="col-md-12 py-5">
@@ -105,6 +122,8 @@
     <script src="{% static 'resource/jquery/jquery.min.js' %}"></script>
     <script src="{% static 'resource/bootstrap/js/popper.min.js' %}"></script>
     <script src="{% static 'resource/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'resource/jquery-mask/jquery.mask.js' %}"></script>
     <script src="{% static 'js/script.js' %}"></script>
+    {% block scripts %}{% endblock %}
 </body>
 </html>
