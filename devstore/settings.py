@@ -11,14 +11,14 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+import dj_database_url
 from django.contrib.messages import constants as message_constants
-import django_heroku
 
 #import cloudinary, cloudinary.uploader, cloudinary.api
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
@@ -55,6 +55,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -140,6 +141,15 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+ALLOWED_HOSTS = ['*']
+
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -168,16 +178,6 @@ MESSAGE_TAGS = {
 }
 
 #PagSeguro
-PAGSEGURO_TOKEN = '29243EDC9A34416789EB0A46F189845F'
+PAGSEGURO_TOKEN = 'D72FDCBF9AB346E9B74F8E019523D15E'
 PAGSEGURO_EMAIL = 'oficialdevstore@gmail.com'
-PAGSEGURO_SANDBOX = True
-
-#Django-Heroku.
-django_heroku.settings(locals())
-
-# Configuração do cloudinary 
-#cloudinary.config (
-#    cloud_name = 'devstore',
-#    api_key = '719213124598396',
-#    api_secret = 'hFQpJLFrrwJekuflLRxWhONcioo'
-#)
+PAGSEGURO_SANDBOX = False
