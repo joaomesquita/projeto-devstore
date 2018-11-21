@@ -35,7 +35,7 @@
                     {% endfor %}
                     <div class="form-row">
                         <div class="form-group col-md-6{% if form.username.errors %} has-error {% endif %}">
-                            <label for="{{ form.username.auto_id }}">{{ form.username.label }}</label>
+                            <label for="{{ form.username.auto_id }}">{{ form.username.label }} / Email</label>
                             {% render_field form.username class="form-control" %}
                             {% for error in form.username.errors %}
                             <span class="help-block">{{ error }}</span>
