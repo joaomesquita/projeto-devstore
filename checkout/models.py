@@ -39,7 +39,7 @@ class CartItem(models.Model):
         unique_together = (('cart_key', 'product'),)
 
     def __str__(self):
-        return '{} [{}] - {}'.format(self.product, self.quantity, self.price)
+        return '{} [{}]'.format(self.product, self.quantity)
 
 class OrderManager(models.Manager):
 
