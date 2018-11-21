@@ -1,10 +1,11 @@
 from django.contrib.auth.backends import ModelBackend as BaseModelBackend
+from django.contrib.auth.hashers import check_password
 
 from .models import User
 
 class ModelBackend(BaseModelBackend):
 
-    def authenticate(self, username=None, password=None):
+    def authenticate(self, request, username=None, password=None):
         if not username is None:
             try:
                 user = User.objects.get(email=username)
