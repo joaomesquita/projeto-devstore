@@ -57,7 +57,7 @@
                             <label>Tamanho</label>
                             <select class="form-control mb-3" name="value_size">
                                 {% for product in product.size.all %}
-                                <option value="{{ product.size }}">{{ product.size }}</option>
+                                <option value="{{ product.name }}">{{ product.name }}</option>
                                 {% endfor %}
                             </select>
                         </div>
