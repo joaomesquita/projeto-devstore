@@ -6,11 +6,10 @@ from .forms import UserAdminCreationForm, UserAdminForm
 
 # Register your models here.
 class UserAdmin(BaseUserAdmin):
-
     add_form = UserAdminCreationForm
     add_fieldsets = (
         (None, {
-            'fields': ('username', 'email', 'password1', 'password2')
+            'fields': ('username', 'email', 'password1', 'password2', 'name', 'cpf', 'gender', 'telephone', 'birth')
         }),
     )
     form = UserAdminForm
