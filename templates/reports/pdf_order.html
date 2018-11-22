@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Relátorio - {{ obj }} | Devstore | Loja para Desenvolvedores</title>
+    <style type="text/css">
+        @page {
+            size: A4;
+            margin: 1cm;
+        }
+        * {
+            font-family: Arial;
+        }
+        p {
+            font-size: 15px;
+        }
+        h3 {
+            text-transform: uppercase;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        .flex-container {
+            display: flex;
+        }
+        .recorte {
+            border-width: 100%;  
+            border-bottom-style:dashed;
+        }
+        .espaco p {
+            margin-bottom: -5px;
+        }
+        .espaco-div div{
+            margin-top: 25px;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="container">
+            <div class="flex-container recorte">
+                <div style="flex-grow: 5">
+                    <h3>Remetente:</h3>
+                    <p><strong>Devstore</strong></p>
+                    <p>Rua Campinas, 110 - quadra 148, centro - Primavera/SP</p>
+                    <p>CEP: 19274-000 | Telefone: (18) 98168-8676</p>
+                </div>
+                <div style="flex-grow: 5 ">
+                    <h3>Destinatário:</h3>
+                    <p><strong>{{ obj.user }}</strong></p>
+                    <p>{{ obj.user.street }}, {{ obj.user.number }} - {{ obj.user.complement }}, {{ obj.user.district }}</p>
+                    <p>{{ obj.user.city }}/{{ obj.user.state }} - {{ obj.user.zipcode }}</p>
+                </div>
+            </div>
+            <div class="espaco">
+                <div class="flex-container espaco-div">
+                    <div>
+                        <h3>Pedido de venda #{{ obj.pk }}</h3>
+                        <p>Efetuado em: <strong>{{ obj.created|date:"d/m/Y H:i" }}</strong></p>
+                        <p>Situação do pedido: <strong>{{ obj.get_status_display }}</strong></p>
+                        <p>Forma de pagamento: <strong>{{ obj.get_payment_option_display }}</strong></p>
+                    </div>
+                </div>
+                <div class="flex-container">
+                    <div style="flex-grow: 5">
+                        <h3>Dados do cliente</h3>
+                        <p><strong>{{ obj.user }}</strong></p>
+                        <p>CEP: {{ obj.user.cpf }}</p>
+                        <p>E-mail: {{ obj.user.email }}</p>
+                        <p>Telefone: {{ obj.user.telephone }}</p>
+                    </div>
+                    <div style="flex-grow: 5">
+                        <h3>Endereço de entrega</h3>
+                        <p>{{ obj.user.street }}, {{ obj.user.number }} - {{ obj.user.complement }}, {{ obj.user.district }}</p>
+                        <p>{{ obj.user.city }}/{{ obj.user.state }} - {{ obj.user.zipcode }}</p>
+                    </div>
+                </div>
+                <table>
+                    <h3>Itens do pedido</h3>
+                    <thead>
+                    <tr>
+                        <th>Produto</th>
+                        <th>Preço</th>
+                        <th>Quantidade</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for obj in obj.items.all %}
+                        <tr>
+                            <td>{{ obj.product }} - {{ obj.size }}</td>
+                            <td>R$ {{ obj.price }}</td>
+                            <td>{{ obj.quantity }}</td>
+                        </tr>
+                        {% endfor %}
+                        <tr>
+                            <td colspan="1"></td>
+                            <td><span class="span-item">Sub Total:</span></td>
+                            <td>R$ {{ obj.total }}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="1"></td>
+                            <td><span class="span-item">Frete:</span></td>
+                            <td>Grátis</td>
+                        </tr>
+                        <tr>
+                            <td colspan="1"></td>
+                            <td><span class="span-item">Total:</span></td>
+                            <td>R$ {{ obj.total }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
