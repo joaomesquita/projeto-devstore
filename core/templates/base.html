@@ -20,7 +20,7 @@
                         </a>
                         <div class="box-shadow dropdown-menu border-0" aria-labelledby="navbarDropdown">
                             {% for category in categories %}
-                                <a class="dropdown-item" href="{{ category.get_absolute_url }}">{{ category.name }}</a>
+                            <a class="dropdown-item" href="{{ category.get_absolute_url }}">{{ category.name }}</a>
                             {% endfor %}
                         </div>
                     </li>
@@ -31,21 +31,21 @@
                 <ul class="nav justify-content-end">
                     <li class="nav-item dropdown link-item">
                         {% if user.is_authenticated %}
-                            <a class="nav-link menu-item" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Olá, {{ user.get_short_name }}<i class="fas fa-angle-down"></i>
-                            </a>
-                            <div class="box-shadow dropdown-menu border-0" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{% url 'accounts:index' %}">Minha conta</a>
-                                <a class="dropdown-item" href="{% url 'accounts:order_list' %}">Meus pedidos</a>
-                                <div class="dropdown-divider"></div>
-                                {% if user.is_staff %}
-                                <a class="dropdown-item" href="{% url 'admin:index' %}">Painel</a>
-                                {% endif %}
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{% url 'accounts:logout' %}">Sair</a>
-                            </div>
+                        <a class="nav-link menu-item" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Olá, {{ user.get_short_name }}<i class="fas fa-angle-down"></i>
+                        </a>
+                        <div class="box-shadow dropdown-menu border-0" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{% url 'accounts:index' %}">Minha conta</a>
+                            <a class="dropdown-item" href="{% url 'accounts:order_list' %}">Meus pedidos</a>
+                            <div class="dropdown-divider"></div>
+                            {% if user.is_staff %}
+                            <a class="dropdown-item" href="{% url 'admin:index' %}">Painel</a>
+                            {% endif %}
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'accounts:logout' %}">Sair</a>
+                        </div>
                         {% else %}
-                            <a class="nav-link menu-item" href="{% url 'accounts:login' %}">Entrar</a>
+                        <a class="nav-link menu-item" href="{% url 'accounts:login' %}">Entrar</a>
                         {% endif %}
                     </li>
                     <li class="nav-item link-item">
@@ -84,7 +84,7 @@
                 <div class="col-md-3">
                     <h5 class="title-h5">Institucional</h5>
                     <ul class="link-item">
-                        <li ><a href="#">Início</a></li>
+                        <li ><a href="{% url 'index' %}">Início</a></li>
                         <li ><a href="#">Perguntas frequentes</a></li>
                         <li ><a href="#">Quem somos</a></li>
                         <li ><a href="#">Contato</a></li>
@@ -93,8 +93,10 @@
                 <div class="col-md-3">
                     <h5 class="title-h5">Sac</h5>
                     <ul class="link-item">
-                        <li><a href="#">(18) 98168-8676</a></li>
-                        <li><a href="#">contato@devstore.com</a></li>
+                        <li>
+                            <p>(18) 98168-8676</p>
+                            <p>oficialdevstore@gmail.com</p>
+                        </li>
                         <li>
                             <p><span class="span-item">Horário de Atendimento</span></p>
                             <p>Segunda a sexta, das 9h às 18h</p>
@@ -111,9 +113,9 @@
                 </div>
                 <div class="col-md-12 py-5">
                     <div class="icon d-flex justify-content-center">
-                        <a href="#"><i class="fab fa-facebook-f fa-lg mr-md-5 mr-3 fa-2x"></i></a>
-                        <a href="#"><i class="fab fa-instagram fa-lg mr-md-5 mr-3 fa-2x"></i></a>
-                        <a href="#"><i class="fab fa-twitter fa-lg mr-md-5 mr-3 fa-2x"></i></a>
+                        <a href="https://www.facebook.com/oficialdevstore/"><i class="fab fa-facebook-f fa-lg mr-md-5 mr-3 fa-2x"></i></a>
+                        <a href="https://www.instagram.com/oficialdevstore/"><i class="fab fa-instagram fa-lg mr-md-5 mr-3 fa-2x"></i></a>
+                        <a href="https://twitter.com/oficialdevstore/"><i class="fab fa-twitter fa-lg mr-md-5 mr-3 fa-2x"></i></a>
                     </div>
                 </div>
             </div>
