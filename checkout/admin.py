@@ -32,8 +32,8 @@ class OrderAdmin(DjangoObjectActions, admin.ModelAdmin):
             return response
         return response
 
-    generate_pdf.label = 'Gerar PDF'
-    generate_pdf.short_description = 'Clique para gerar o PDF do pedido'
+    generate_pdf.label = 'Imprimir Pedido'
+    generate_pdf.short_description = 'Clique para imprimir o PDF do pedido'
     change_actions = ('generate_pdf',)
 
 admin.site.register(CartItem, CartItemAdmin)
