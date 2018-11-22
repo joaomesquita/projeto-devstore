@@ -4,7 +4,7 @@
 
 {% load widget_tweaks %}
 
-{% block title %}{{ product }} | {{ block.super }} {% endblock %}
+{% block title %}{{ product }} | {{ block.super }}{% endblock %}
 
 {% block container %}
 <div class="container div-content">
@@ -52,6 +52,7 @@
                 <p class="text-justify">{{ product.description }}</p>
                 <form action="{% url 'checkout:create_cart_item' product.slug %}" method="post">
                     {% csrf_token %}
+                    {% if product.size.all %}
                     <div class="row">
                         <div class="col-md-6">
                             <label>Tamanho</label>
@@ -61,7 +62,8 @@
                                 {% endfor %}
                             </select>
                         </div>
-                    </div> 
+                    </div>
+                    {% endif %} 
                     <button class="product-button" type="submit">Comprar</button>
                 </form>
             </div>
