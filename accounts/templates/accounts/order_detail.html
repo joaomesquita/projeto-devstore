@@ -68,7 +68,10 @@
                                         </div>
                                         <div class="p-2 bd-highlight">
                                             <a class="page-item" href="{{ order.product.get_absolute_url }}">{{ order.product }}</a>
-                                            <p>Tamanho - {{ order.size }}</p>
+                                            <p class="mb-0">Categoria: {{ order.product.category }}</p>
+                                            {% if order.size %}
+                                            <p class="mb-0">Tamanho - {{ order.size }}</p>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </td>

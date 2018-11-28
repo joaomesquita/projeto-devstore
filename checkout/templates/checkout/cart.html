@@ -40,7 +40,10 @@
                                 </div>
                                 <div class="p-2 bd-highlight">
                                     <a class="page-item" href="{{ form.instance.product.get_absolute_url }}">{{ form.instance.product }}</a>
-                                    <p>Tamanho - {{ form.instance.size }}</p>
+                                    <p class="mb-0">Categoria: {{ form.instance.product.category }}</p>
+                                    {% if form.instance.size %}
+                                    <p class="mb-0">Tamanho - {{ form.instance.size }}</p>
+                                    {% endif %}
                                 </div>
                             </div>
                         </td>

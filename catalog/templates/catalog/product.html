@@ -43,6 +43,7 @@
             </div>
             <div> 
                 <h1 class="product-title">{{ product }}</h1>
+                <p>Categoria: {{ product.category }}</p>
                 {% if product.sale %}
                 <p class="product-previous-price">De: R$ {{ product.price }}</p>
                 <p class="product-price">Por: R$ {{ product.sale }}</p>
