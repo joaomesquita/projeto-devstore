@@ -95,9 +95,20 @@
                     <tbody>
                         {% for obj in obj.items.all %}
                         <tr>
-                            <td>{{ obj.product }} - {{ obj.size }}</td>
-                            <td>R$ {{ obj.price }}</td>
-                            <td>{{ obj.quantity }}</td>
+                            <td>
+                                <p>{{ obj.product }}</p>
+                                <p>
+                                {% if obj.size %}
+                                Tamanho - {{ obj.size }}
+                                {% endif %}
+                                </p>
+                            </td>
+                            <td>
+                                <p>R$ {{ obj.price }}</p>
+                            </td>
+                            <td>
+                                <p>{{ obj.quantity }}</p>
+                            </td>
                         </tr>
                         {% endfor %}
                         <tr>
