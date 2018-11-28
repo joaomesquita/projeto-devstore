@@ -18,7 +18,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     cpf = models.CharField('CPF', max_length=14)
     gender = models.CharField('Sexo', max_length=1, choices=GENDER_CHOICES)
     telephone = models.CharField('Telefone', max_length=15)
-    birth = models.DateField('Data de Nascimento', blank=True)
+    birth = models.DateField('Data de Nascimento')
     street = models.CharField('Rua', max_length=100, blank=True)
     number = models.CharField('Número', max_length=5, blank=True)
     complement = models.CharField('Complemento', max_length=50, blank=True)
