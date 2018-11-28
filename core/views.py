@@ -8,5 +8,6 @@ class IndexView(generic.ListView):
 
     model = Product
     template_name = 'index.html'
+    paginate_by = 3
 
 index = IndexView.as_view()
