@@ -291,3 +291,28 @@ ol.breadcrumb {
     padding-top: 10vh;
     padding-bottom: 20vh;
 }
+
+@media screen and (max-width: 550px) {
+    
+    .logo a {
+        width: 120px;
+        height: 40px;
+    }
+
+    ol.breadcrumb {
+        margin-top: 5%;
+        font-size: 0.7em;
+    }
+
+    .gallery-item {
+        display: none;
+    }
+
+    .product-button {
+        padding: 12px 152px;
+    }
+
+    .footer {
+        padding-bottom: 0vh;
+    }
+}
