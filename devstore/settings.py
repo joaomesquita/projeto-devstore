@@ -50,7 +50,6 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'localflavor',
     'django_object_actions',
-    #'cloudinary',
 ]
 
 MIDDLEWARE = [
