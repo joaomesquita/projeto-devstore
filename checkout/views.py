@@ -48,15 +48,18 @@ class CartItemView(TemplateView):
             formset = CartItemFormSet(queryset=CartItem.objects.none())
         return formset
 
-    def get_context_data(self, **kwargs):
-        context = super(CartItemView, self).get_context_data(**kwargs)
-        context['formset'] = self.get_formset()
+    def get_value_total(self):
         session_key = self.request.session.session_key
         queryset=CartItem.objects.filter(cart_key=session_key)
         value = 0
         for total in queryset:
             value = value + (total.quantity * total.price)
-        print(value)
+        return value
+
+    def get_context_data(self, **kwargs):
+        context = super(CartItemView, self).get_context_data(**kwargs)
+        context['formset'] = self.get_formset()
+        value = self.get_value_total()
         context['total'] = value
         return context
     
@@ -67,6 +70,8 @@ class CartItemView(TemplateView):
             formset.save()
             messages.success(request, 'Carrinho atualizado com sucesso.')
             context['formset'] = self.get_formset(clear=True)
+        value = self.get_value_total()
+        context['total'] = value
         return self.render_to_response(context)
 
 class CheckoutView(LoginRequiredMixin, TemplateView):
